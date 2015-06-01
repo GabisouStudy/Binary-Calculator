@@ -321,13 +321,13 @@ while enterType.nil?
 			when "*"
 				final_result = calculator.multiplication(firstValue, secondValue)
 			when "/"
-				puts "\n\nYour final result is: " + calculator.division(firstValue, secondValue) + "\n__________________________________________________\n__________________________________________________\n\n"
+				final_result = calculator.division(firstValue, secondValue)
 		end
 
-		puts "\n\nYour final result is: " + final_result.to_s + "\n__________________________________________________\n__________________________________________________\n\n"
+		puts "\n\nYour final result is: " + final_result.to_s + "\n__________________________________________________\n__________________________________________________"
 
-		#puts "Your result in decimal is: " + conversor.BinToDec(final_result).to_s
-		#puts "Your result in hexadecimal is: " + conversor.BinToHexDec(final_result).to_s + "\n\n"
+		puts "Your result in decimal is: " + conversor.BinToDec(final_result).to_s
+		puts "Your result in hexadecimal is: " + conversor.BinToHexDec(final_result).to_s + "\n__________________________________________________\n__________________________________________________\n\n"
 
 		firstValue = nil
 		operation = nil
