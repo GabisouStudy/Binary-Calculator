@@ -1,3 +1,4 @@
+Para inciar a calculadora basta clicar no arquivo "run_windows.bat".
 Para sair, digite "exit" a qualquer momento.
 
 Link do GitHub:
