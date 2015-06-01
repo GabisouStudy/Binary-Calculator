@@ -114,6 +114,50 @@ class Conversor
 	end
 end
 
+class Calculator
+	def sum(value1, value2)
+		carry = []
+		firstValue = firstValue.split(//)
+		secondValue = secondValue.split(//)
+
+		while firstValue.length > secondValue.length
+			secondValue = "0" + secondValue
+		end
+
+		while secondValue.length > firstValue.length
+			firstValue = "0" + firstValue
+		end
+
+		firstValue = firstValue.reverse
+		secondValue = secondValue.reverse
+
+		puts firstValue.to_s + "	||	" + secondValue.to_s
+	end
+
+	def subtraction(value1, value2)
+		
+	end
+
+	def multiplication(value1, value2)
+		
+	end
+	def division(value1, value2)
+		
+	end
+
+	def search_operation(value1, value2, operation)
+		case object
+			when "+"
+				puts sum(value1,value2)
+			when "-"
+				
+			when "*"
+				
+			when "/"
+				
+		end
+	end
+end
 
 
 puts "Welcome to..."
@@ -122,64 +166,133 @@ puts "	by Gabriel de Souza"
 puts "\nThank you for your preference!"
 puts "\n\nType exit to close this application."
 
-typeof = nil
-
 conversor = Conversor.new
+
+calculator = Calculator.new
 
 enterType = nil
 
+typeof = nil
+
+
+firstValue = nil
+secondValue = nil
+
+operation = nil
+
 while enterType.nil?
-	puts "\n\nSelect the type of the input value:"
-	puts "bin || dec || hex"
-	enterType = gets.chomp
-	if enterType != "exit"
-		case enterType
-			when "bin"
-				puts "Enter a valid value in binary"
-				value = nil
-				while value.nil?
-					value = gets.chomp
-					if value =~/^[0-1]+$/
-						puts "Your value is: " + value
-						puts "Your value in Decimal is: " + conversor.BinToDec(value).to_s
-						puts "Your value in Hexadecimal is: " + conversor.BinToHexDec(value).to_s
-					else
-						puts "Please, enter a valid value in binary!"
+	if firstValue != nil && secondValue != nil
+		puts "\n\nPrimeiro Valor da operacao: " + firstValue.to_s
+		puts "Segundo Valor da operacao: " + secondValue.to_s
+		puts "\nYour operation is: " + operation
+
+		case operation
+			when "+"
+				puts "\n\nYour final result is: " + "a" + "\n__________________________________________________\n__________________________________________________\n\n"
+			when "-"
+				puts "\n\nYour final result is: " + "b" + "\n__________________________________________________\n__________________________________________________\n\n"
+			when "*"
+				puts "\n\nYour final result is: " + "c" + "\n__________________________________________________\n__________________________________________________\n\n"
+			when "/"
+				puts "\n\nYour final result is: " + "d" + "\n__________________________________________________\n__________________________________________________\n\n"
+		end
+
+		firstValue = nil
+		operation = nil
+		secondValue = nil
+	else
+		if firstValue.nil? || operation != nil && enterType.nil?
+			puts "\n\nSelect the type of the input value:"
+			puts "bin || dec || hex"
+		else
+			puts "\nEnter a valid operation (+, -, *, /)"
+		end
+		enterType = gets.chomp
+		if enterType != "exit"
+			if firstValue.nil? || operation != nil
+				case enterType
+					when "bin"
+						puts "\nEnter a valid value in binary"
 						value = nil
-					end
-				end
-			when "dec"
-				puts "Enter a valid value in decimal"
-				value = nil
-				while value.nil?
-					value = gets.chomp
-					if value =~/^[0-9]+$/
-						puts "Your value is: " + value
-						puts "Your value in Binary is: " + conversor.DecToBin(value).to_s
-						puts "Your value in Hexadecimal is: " + conversor.DecToHexDec(value).to_s
-					else
-						puts "Please, enter a valid value in decimal!"
+						while value.nil?
+							value = gets.chomp
+							if value =~/^[0-1]+$/
+								if firstValue.nil?
+									firstValue = value
+									puts "\n\nYour value is: " + value
+									puts "Your value in Decimal is: " + conversor.BinToDec(value).to_s
+									puts "Your value in Hexadecimal is: " + conversor.BinToHexDec(value).to_s
+								elsif secondValue.nil?
+									secondValue = value
+									puts "Your value is: " + value
+									puts "Your value in Decimal is: " + conversor.BinToDec(value).to_s
+									puts "Your value in Hexadecimal is: " + conversor.BinToHexDec(value).to_s
+								end
+							else
+								puts "\n\nPlease, enter a valid value in binary!"
+								value = nil
+							end
+						end
+					when "dec"
+						puts "\nEnter a valid value in decimal"
 						value = nil
-					end
-				end
-			when "hex"
-				puts "Enter a valid value in hexadecimal"
-				value = nil
-				while value.nil?
-					value = gets.chomp
-					if value =~ /^[[:xdigit:]]+$/
-						puts "Your value is: " + value
-						puts "Your value in Decimal is: " + conversor.HexDecToDec(value).to_s
-						puts "Your value in Binary is: " + conversor.HexDecToBin(value).to_s
-					else
-						puts "Please, enter a valid value in hexadecimal!"
+						while value.nil?
+							value = gets.chomp
+							if value =~/^[0-9]+$/
+								if firstValue.nil?
+									firstValue = conversor.DecToBin(value)
+									puts "\n\nYour value is: " + value
+									puts "Your value in Binary is: " + conversor.DecToBin(value).to_s
+									puts "Your value in Hexadecimal is: " + conversor.DecToHexDec(value).to_s
+								elsif secondValue.nil?
+									secondValue = conversor.DecToBin(value)
+									puts "\n\nYour value is: " + value
+									puts "Your value in Binary is: " + conversor.DecToBin(value).to_s
+									puts "Your value in Hexadecimal is: " + conversor.DecToHexDec(value).to_s
+								end
+							else
+								puts "\n\nPlease, enter a valid value in decimal!"
+								value = nil
+							end
+						end
+					when "hex"
+						puts "\nEnter a valid value in hexadecimal"
 						value = nil
-					end
+						while value.nil?
+							value = gets.chomp
+							if value =~ /^[[:xdigit:]]+$/
+								if firstValue.nil?
+									firstValue = conversor.HexDecToBin(value)
+									puts "\n\nYour value is: " + value
+									puts "Your value in Decimal is: " + conversor.HexDecToDec(value).to_s
+									puts "Your value in Binary is: " + conversor.HexDecToBin(value).to_s
+								elsif secondValue.nil?
+									secondValue = conversor.HexDecToBin(value)
+									puts "\n\nYour value is: " + value
+									puts "Your value in Decimal is: " + conversor.HexDecToDec(value).to_s
+									puts "Your value in Binary is: " + conversor.HexDecToBin(value).to_s
+								end
+							else
+								puts "\n\nPlease, enter a valid value in hexadecimal!"
+								value = nil
+							end
+						end
+					else
+					puts "\n\nPlease, enter a valid type!"
+					enterType = nil
 				end
 			else
-			puts "Please, enter a valid type!"
+				if enterType == "+" || enterType == "-" || enterType == "*" || enterType == "/"
+					operation = enterType
+					#puts "\nYour operation is: " + operation
+
+					enterType = nil
+				else
+					puts "\n\nPlease, enter a valid operation!"
+					enterType = nil
+				end
+			end
 			enterType = nil
 		end
-		enterType = nil
 	end
 end
